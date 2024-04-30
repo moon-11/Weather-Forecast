@@ -1,15 +1,37 @@
 .toggle {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
+  position: fixed;
+  top: 20px;
+  left: 20px;
 }
 
-.dark {
-  background-color: #333;
+.toggle-button {
+  padding: 6px 12px; /* Reduzindo o padding para torná-lo menor */
+  border: none;
+  border-radius: 20px;
+  background-color: #007bff;
   color: #fff;
+  font-size: 14px; /* Reduzindo o tamanho da fonte */
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.light {
+.toggle-button:hover {
+  background-color: #0056b3;
+}
+
+.toggle-button-on {
+  background-color: #333;
+}
+
+.toggle-button-off {
   background-color: #fff;
   color: #333;
+}
+
+.toggle-button-on:hover {
+  background-color: #1a1a1a;
+}
+
+.toggle-button-off:hover {
+  background-color: #f2f2f2;
 }

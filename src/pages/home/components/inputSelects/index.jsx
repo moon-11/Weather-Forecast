@@ -1,12 +1,13 @@
 import axios from 'axios';
 import { useState } from 'react';
+import './styles.css';
 
 function InputSelects() {
   const [cities, setCities] = useState([]);
   const [selectedState, setSelectedState] = useState('');
   const [selectedCity, setSelectedCity] = useState('');
 
-  // Função para remover acentos e caracteres especiais
+  
   const removeAccents = (str) => {
     return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   };
@@ -18,7 +19,7 @@ function InputSelects() {
     if (state !== 'estado') {
       axios.get(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${state}/municipios`)
         .then(response => {
-          // Remover acentos dos nomes das cidades antes de definir o estado
+          
           const citiesWithoutAccents = response.data.map(city => ({
             ...city,
             nome: removeAccents(city.nome)
@@ -45,7 +46,7 @@ function InputSelects() {
 
     axios.get(`http://api.weatherapi.com/v1/current.json?key=755975c76f39483ba3d132451240904&q=${selectedCity}&lang=pt`)
       .then(response => {
-        console.log(response.data); // Aqui você pode lidar com os dados da resposta da API de clima
+        console.log(response.data); 
       })
       .catch(error => {
         console.error('Erro ao obter dados do clima:', error);
