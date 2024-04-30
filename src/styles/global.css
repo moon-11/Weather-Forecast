@@ -1,4 +1,7 @@
 :root {
+  
+    --bg-color: #fff;
+    --text-color: #333;
   --primary-color: #007bff; 
   --secondary-color: #6c757d; 
   --font-family: Arial, sans-serif; 
@@ -18,7 +21,10 @@
   --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
 
-
-
-
+/* Outros estilos conforme necessário */

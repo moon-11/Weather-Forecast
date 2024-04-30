@@ -6,13 +6,28 @@ function InputSelects() {
   const [selectedState, setSelectedState] = useState('');
   const [selectedCity, setSelectedCity] = useState('');
 
-  const handleStateChange = async (event) => {
+  // Função para remover acentos e caracteres especiais
+  const removeAccents = (str) => {
+    return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  };
+
+  const handleStateChange = (event) => {
     const state = event.target.value;
     setSelectedState(state);
 
     if (state !== 'estado') {
-      const response = await axios.get(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${state}/municipios`);
-      setCities(response.data);
+      axios.get(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${state}/municipios`)
+        .then(response => {
+          // Remover acentos dos nomes das cidades antes de definir o estado
+          const citiesWithoutAccents = response.data.map(city => ({
+            ...city,
+            nome: removeAccents(city.nome)
+          }));
+          setCities(citiesWithoutAccents);
+        })
+        .catch(error => {
+          console.error('Erro ao obter cidades:', error);
+        });
     } else {
       setCities([]);
     }
@@ -22,19 +37,19 @@ function InputSelects() {
     setSelectedCity(event.target.value);
   };
 
-  const handleSearch = async () => {
+  const handleSearch = () => {
     if (!selectedCity || selectedCity === 'cidade') {
       console.error('Nenhuma cidade selecionada');
       return;
     }
 
-    const apiKey = '3e35537110ebfb97798c4eb69e118ed2'; 
-    try {
-      const response = await axios.get(`http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${selectedCity}&lang=pt`);
-      console.log(response.data); // Aqui você pode lidar com os dados da resposta da API de clima
-    } catch (error) {
-      console.error('Erro ao obter dados do clima:', error);
-    }
+    axios.get(`http://api.weatherapi.com/v1/current.json?key=755975c76f39483ba3d132451240904&q=${selectedCity}&lang=pt`)
+      .then(response => {
+        console.log(response.data); // Aqui você pode lidar com os dados da resposta da API de clima
+      })
+      .catch(error => {
+        console.error('Erro ao obter dados do clima:', error);
+      });
   };
 
   return (

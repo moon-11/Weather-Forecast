@@ -1,0 +1,15 @@
+.toggle {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.dark {
+  background-color: #333;
+  color: #fff;
+}
+
+.light {
+  background-color: #fff;
+  color: #333;
+}
