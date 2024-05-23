@@ -5,6 +5,7 @@ function Navbar() {
     <nav className='Navbar'>
       <h1>Previsão do tempo</h1>
     </nav>
+    
   );
 }
 
