@@ -1,37 +1,43 @@
-import React, { useState, useEffect } from 'react';
-import './styles.css';
+import { useEffect, useState } from "react";
+import { FaMoon, FaSun } from "react-icons/fa";
+
+// eslint-disable-next-line no-unused-vars
+import React from "react";
+import "./styles.css";
 
 function Toggle() {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   const handleToggle = () => {
     setIsDarkMode(!isDarkMode);
+    document.body.classList.toggle("dark");
+    localStorage.setItem("darkMode", JSON.stringify(!isDarkMode));
   };
 
   useEffect(() => {
-    const html = document.querySelector('html');
-    if (html) {
-      if (isDarkMode) {
-        html.style.setProperty('--bg-color', '#333');
-        html.style.setProperty('--text-color', '#fff');
-      } else {
-        html.style.setProperty('--bg-color', '#fff');
-        html.style.setProperty('--text-color', '#333');
-      }
+    const darkMode = JSON.parse(localStorage.getItem("darkMode") || "false");
+    setIsDarkMode(darkMode);
+    if (darkMode) {
+      document.body.classList.add("dark");
     }
-  }, [isDarkMode]);
+  }, []);
 
   return (
     <div className="toggle">
       <button
-        className={`toggle-button ${isDarkMode ? 'toggle-button-on' : 'toggle-button-off'}`}
+        className={`toggle-button ${
+          isDarkMode ? "toggle-button-on" : "toggle-button-off"
+        }`}
         onClick={handleToggle}
       >
-        {isDarkMode ? 'Dark Mode' : 'Light Mode'}
+        {isDarkMode ? (
+          <FaMoon size={20} color="#fff" />
+        ) : (
+          <FaSun size={20} color="#ffbb00" />
+        )}
       </button>
     </div>
   );
 }
 
 export default Toggle;
-

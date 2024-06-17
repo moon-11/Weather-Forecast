@@ -1,0 +1,79 @@
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 100vh;
+  padding: 30px 0;
+}
+
+.navbar {
+  background-color: #1e3d5e;
+  color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px 25px;
+
+  border-radius: 30px;
+  width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease;
+  animation: float 3s ease-in-out infinite;
+}
+
+.navbar:hover {
+  background-color: #192e43;
+  transform: translateY(-5px);
+}
+
+.navbar h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.inputSelects {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+select {
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid #a0a0a0;
+  font-size: 16px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: border-color 0.3s ease;
+}
+
+button {
+  padding: 12px 25px;
+  margin: 15px auto; /* Margem acima e abaixo, e centralizado horizontalmente */
+  border: none;
+  border-radius: 15px;
+  background-color: #1e3d5e;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #192e43;
+  transform: scale(1.05);
+}

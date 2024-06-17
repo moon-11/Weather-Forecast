@@ -3,8 +3,22 @@
   --text-color: #333;
 }
 
+:root .dark {
+  --bg-color: #333;
+  --text-color: #fff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
 }
 
+button {
+  cursor: pointer;
+}
